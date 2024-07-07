@@ -1,0 +1,37 @@
+.row {
+  display: flex;
+}
+
+.column {
+  flex: 50%;
+  border: 2px solid black;
+  padding: 10px;
+}
+
+.block {
+  background-color: pink;
+  border: 2px solid red;
+  padding: 10px;
+  display: block;
+}
+
+.inline {
+  display: inline;
+  background: yellow;
+  color: purple;
+}
+
+.inline-block {
+  display: inline-block;
+  background: purple;
+  color: yellow;
+}
+
+.phat-padding-and-margin {
+  margin: 20px;
+  padding: 20px;
+}
+
+.css-display {
+  width: 100%;
+}
