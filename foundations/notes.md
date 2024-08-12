@@ -624,4 +624,63 @@ The properties on flex-containers are
   * Decides how all the flex items will be aligned within the container along the main axis
   * Can't be applied to a single item as it doesn't make sense syntactically.
     * Think about it. If we center one item along the main axis, what do the other ones do?
+![alt text](image-2.png)
+    * If we justify a single item to the start, it will overlap the actual start item.
+      * We can do it in the secondary direction though because theres nothing there.
+  * Possible values are
+    * center
+    * start
+    * end
+    * space-around
+    * space-between
+    * space-evenly(?)
 * align-items
+  * Decides how all flex-items are aligned in the secondary axis
+  * Possible values are
+    * center
+    * start
+    * end
+    * stretch
+    * baseline
+  * If there are multiple rows due to using flex-wrap, this applies to the single row, not all the rows
+    * Use align-content to align all the rows within a container.
+![alt text](image-3.png)
+* gap
+  * Puts some space between each flex item
+* flex-direction
+  * Decides which direction is the main axis
+  * Possible values are
+    * horizontal
+    * vertical
+
+The properties we can use on flex items are
+* flex
+  * A shorthand for flex-grow, flex-shrink and flex-basis
+  * This is complex af and I dont think I can summarize easily. Maybe I dont fully understand or feel confident with it.
+* align-self
+  * The same as align-items but for a single item
+
+We can define the words we find in all of this as follows
+* `justify` - to position something along its primary axis
+* `align` - to position something along its secondary axis
+* `content` - the group of stuff that can be distributed. Usually refers to all flex items
+* `items` - single items that can be positioned individually.
+
+### flex
+This is complex enough for its own section. Each flex item can be assigned a value for flex that changes what it does significantly.
+
+The first thing to understand is that flex items grow and shrink a way that is different from the normal flow or inline. The width/height of an item may well be ignored to fit everything. The default of flex will mean that it is definitely ignored
+
+There are 3 components to flex, flex-grow, flex-shrink and flex-basis.
+
+Flex-grow is defaulted to 0, meaning that no matter what the size of the flex item along its main axis will not change. If it is set to a number higher than 0, the item will grow to fill up all the remaining space of its container **proportional** to its ratio of all the flex-grow within the container. This only comes into play if the items within a flex container are smaller than the container itself.
+
+Flex-shrink is the exact opposite and only comes into play when the items are larger than the container.
+
+If both of these values are greater than 0 for all items then the size of the item will be ignored if it doesnt fit the container. All items will always fit into the container and not overflow.
+
+A value of 0 for these will mean that the item will not grow or shrink, but it doesnt necessarily mean it respects the width/height of the item. I dont fully understand yet.
+
+Flex-basis is essentially the size of the item before any growing or shrinking in the direction of the main axis. If this is 0, it means that the item takes up 0 space at the beginning and this is where it starts from. Then, if all items have flex-basis of 0 and a flex-grow of 1, then all items take up even space to fill up the flex container!
+
+If the flex-basis is auto, then it defaults to the width/height of the item itself. If a flex-basis is larger than 0 for one item and everything has a flex-grow of 1, then that one item will be flex-basis pixels larger.
