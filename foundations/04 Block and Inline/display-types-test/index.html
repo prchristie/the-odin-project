@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Display types</h1>
+    <div class="row">
+      <div class="column">
+        <h2>Block</h2>
+        <p class="block">
+          This is a block level element. It will be on a new line. Its width
+          should be that of its parent <strong>content</strong>. The parent
+          element here has padding, so it fill up its entire content
+        </p>
+        <p class="block">Even if the content is too small, its still wide</p>
+        <p class="block">
+          The paragraph here is a block! But
+          <span class="inline">this is an inline element here</span>. It doesn't
+          change anything (other than the colour), because inline just chills
+          inline.
+        </p>
+        <p class="block">
+          In this one, we will see that the inline element
+          <span class="inline phat-padding-and-margin"
+            >has some padding and margin.</span
+          >This is respected in the inline direction (horizontal), but not the
+          block direction (vertical).
+        </p>
+        <p class="block">
+          We could fix this "problem" and make everything respect us by changing
+          our inline element to be
+          <span class="inline-block">an inline block</span>. There is no padding
+          here, but this is a block element that is also inline
+        </p>
+        <p class="block">
+          Now lets see what happens when we put some
+          <span class="inline-block phat-padding-and-margin"
+            >margin and padding.</span
+          >. Oh shit, we got some respect, exactly like a block element would
+          expect. Das pretty cool. But we don't force a new line. Except we kind
+          of have?
+        </p>
+      </div>
+      <div class="column">
+        <h2>CSS</h2>
+        <embed src="styles.css" type="" class="css-display" />
+      </div>
+    </div>
+  </body>
+</html>
