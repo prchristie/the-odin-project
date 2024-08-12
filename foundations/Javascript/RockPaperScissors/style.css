@@ -1,0 +1,61 @@
+* {
+  margin: 0;
+  color: white;
+}
+
+button {
+  background-color: blue;
+  height: 100vh;
+  font-size: calc(min(33vw, 50vh));
+  border: 1px solid darkblue;
+  padding: 0;
+  text-align: center;
+}
+
+button:hover {
+  filter: brightness(1.1);
+}
+
+button:active {
+  filter: brightness(0.9);
+}
+
+.choice-buttons {
+  display: flex;
+}
+
+.choice-buttons > * {
+  flex: 1;
+}
+
+#winner-text {
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%, 0);
+  z-index: 100;
+  transition: opacity 1s;
+  opacity: 0;
+  color: white;
+}
+
+.computer-advantage {
+  position: absolute;
+  background-color: blue;
+  padding: 15px;
+  z-index: 100;
+  border-bottom-right-radius: 15px;
+}
+
+.score {
+  position: absolute;
+  bottom: 0%;
+  padding: 15px;
+}
+
+#asshole-text {
+  position: absolute;
+  bottom: 0%;
+  right: 0%;
+  padding: 15px;
+}
