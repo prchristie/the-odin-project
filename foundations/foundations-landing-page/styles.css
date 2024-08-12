@@ -139,10 +139,9 @@ section > * {
 }
 
 .quote {
-  min-height: 400px;
   display: flex;
   align-items: center;
-  padding-bottom: 0;
+  padding-block: 100px;
 }
 
 .quote-container {
@@ -150,11 +149,10 @@ section > * {
 }
 
 .call-to-action {
-  min-height: 350px;
+  padding-block: 100px;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0;
 }
 
 .cta {
