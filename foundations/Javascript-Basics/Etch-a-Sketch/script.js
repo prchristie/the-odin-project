@@ -14,6 +14,18 @@ function getRandomColour() {
   return POSSIBLE_COLORS[Math.floor(Math.random() * POSSIBLE_COLORS.length)];
 }
 
+function changeDimensionsFlow(etchASketchContainer, grid) {
+  const dims = prompt("How many cells in a row?");
+
+  if (!Number(dims) || Number(dims) > MAX_DIMENSIONS) {
+    return;
+  }
+  etchASketchContainer?.removeChild(grid);
+
+  const newGrid = createGrid(dims, dims);
+  etchASketchContainer?.appendChild(newGrid);
+}
+
 function run() {
   const etchASketchContainer = document.querySelector(".etchasketch-container");
   const changeDimsBtn = document.querySelector(".change-dims-btn");
@@ -21,17 +33,28 @@ function run() {
   let grid = createGrid(INITIAL_DIMENSIONS, INITIAL_DIMENSIONS);
   etchASketchContainer?.appendChild(grid);
 
-  changeDimsBtn?.addEventListener("click", () => {
-    const dims = prompt("How many cells in a row?");
+  changeDimsBtn?.addEventListener("click", () =>
+    changeDimensionsFlow(etchASketchContainer, grid)
+  );
+}
 
-    if (!Number(dims) || Number(dims) > MAX_DIMENSIONS) {
-      return;
-    }
-    etchASketchContainer?.removeChild(grid);
+function darkenCell(cell, numHovers) {
+  cell.style.opacity = String(1 - numHovers * 0.1);
+}
 
-    grid = createGrid(dims, dims);
-    etchASketchContainer?.appendChild(grid);
-  });
+function setCellToRandomColour(cell) {
+  cell.style.backgroundColor = getRandomColour();
+}
+
+function handleCellMouseOver(hovers, cell) {
+  hovers++;
+  const color = cell.style.backgroundColor;
+
+  if (!color) {
+    setCellToRandomColour(cell);
+  } else {
+    darkenCell(cell, hovers);
+  }
 }
 
 function createCell() {
@@ -39,30 +62,27 @@ function createCell() {
   cell.classList.add("cell");
 
   var hovers = 0;
-  cell.addEventListener("mouseover", () => {
-    hovers++;
-    const color = cell.style.backgroundColor;
-
-    if (!color) {
-      cell.style.backgroundColor = getRandomColour();
-    } else {
-      cell.style.opacity = String(1 - hovers * 0.1);
-    }
-  });
+  cell.addEventListener("mouseover", () => handleCellMouseOver(hovers, cell));
 
   return cell;
+}
+
+function createCellRow(numCells) {
+  const row = document.createElement("div");
+  row.classList.add("row");
+  for (let y = 0; y < numCells; y++) {
+    const cell = createCell();
+    row.appendChild(cell);
+  }
+
+  return row;
 }
 
 function createGrid(horizontalCells, verticalCells) {
   const grid = document.createElement("div");
   grid.classList.add("grid");
   for (let x = 0; x < horizontalCells; x++) {
-    const row = document.createElement("div");
-    row.classList.add("row");
-    for (let y = 0; y < verticalCells; y++) {
-      const cell = createCell();
-      row.appendChild(cell);
-    }
+    const row = createCellRow(verticalCells);
     grid.appendChild(row);
   }
 
