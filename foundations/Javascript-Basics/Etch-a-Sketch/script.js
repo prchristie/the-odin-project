@@ -37,11 +37,16 @@ function run() {
 function createCell() {
   const cell = document.createElement("div");
   cell.classList.add("cell");
+
+  var hovers = 0;
   cell.addEventListener("mouseover", () => {
+    hovers++;
     const color = cell.style.backgroundColor;
 
     if (!color) {
       cell.style.backgroundColor = getRandomColour();
+    } else {
+      cell.style.opacity = String(1 - hovers * 0.1);
     }
   });
 
