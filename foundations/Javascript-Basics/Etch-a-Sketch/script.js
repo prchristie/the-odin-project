@@ -1,16 +1,51 @@
-const HORIZONTAL_CELLS = 16;
-const VERTICAL_CELLS = 16;
+const INITIAL_DIMENSIONS = 16;
+const MAX_DIMENSIONS = 300;
+const POSSIBLE_COLORS = [
+  "red",
+  "blue",
+  "aqua",
+  "brown",
+  "coral",
+  "green",
+  "purple",
+];
+
+function getRandomColour() {
+  return POSSIBLE_COLORS[Math.floor(Math.random() * POSSIBLE_COLORS.length)];
+}
 
 function run() {
   const etchASketchContainer = document.querySelector(".etchasketch-container");
   const changeDimsBtn = document.querySelector(".change-dims-btn");
 
-  const grid = createGrid(HORIZONTAL_CELLS, VERTICAL_CELLS);
+  let grid = createGrid(INITIAL_DIMENSIONS, INITIAL_DIMENSIONS);
   etchASketchContainer?.appendChild(grid);
 
   changeDimsBtn?.addEventListener("click", () => {
     const dims = prompt("How many cells in a row?");
+
+    if (!Number(dims) || Number(dims) > MAX_DIMENSIONS) {
+      return;
+    }
+    etchASketchContainer?.removeChild(grid);
+
+    grid = createGrid(dims, dims);
+    etchASketchContainer?.appendChild(grid);
   });
+}
+
+function createCell() {
+  const cell = document.createElement("div");
+  cell.classList.add("cell");
+  cell.addEventListener("mouseover", () => {
+    const color = cell.style.backgroundColor;
+
+    if (!color) {
+      cell.style.backgroundColor = getRandomColour();
+    }
+  });
+
+  return cell;
 }
 
 function createGrid(horizontalCells, verticalCells) {
@@ -20,9 +55,8 @@ function createGrid(horizontalCells, verticalCells) {
     const row = document.createElement("div");
     row.classList.add("row");
     for (let y = 0; y < verticalCells; y++) {
-      const inner = document.createElement("div");
-      inner.classList.add("cell");
-      row.appendChild(inner);
+      const cell = createCell();
+      row.appendChild(cell);
     }
     grid.appendChild(row);
   }
