@@ -1,4 +1,4 @@
-const INITIAL_DIMENSIONS = 16;
+var dimensions = 16;
 const MAX_DIMENSIONS = 300;
 const POSSIBLE_COLORS = [
   "red",
@@ -15,11 +15,16 @@ function getRandomColour() {
 }
 
 function changeDimensionsFlow(etchASketchContainer, grid) {
-  const dims = prompt("How many cells in a row?");
+  dimensions = Number(prompt("How many cells in a row?"));
 
-  if (!Number(dims) || Number(dims) > MAX_DIMENSIONS) {
+  changeDimensions(etchASketchContainer, grid, dimensions);
+}
+
+function changeDimensions(etchASketchContainer, grid, dims) {
+  if (!dims || dims > MAX_DIMENSIONS || dims < 1) {
     return;
   }
+
   etchASketchContainer?.removeChild(grid);
 
   const newGrid = createGrid(dims, dims);
@@ -28,13 +33,18 @@ function changeDimensionsFlow(etchASketchContainer, grid) {
 
 function run() {
   const etchASketchContainer = document.querySelector(".etchasketch-container");
-  const changeDimsBtn = document.querySelector(".change-dims-btn");
+  const changeDimsBtnElement = document.querySelector(".change-dims-btn");
+  const resetBtnElement = document.querySelector(".reset-btn");
 
-  let grid = createGrid(INITIAL_DIMENSIONS, INITIAL_DIMENSIONS);
+  let grid = createGrid(dimensions, dimensions);
   etchASketchContainer?.appendChild(grid);
 
-  changeDimsBtn?.addEventListener("click", () =>
+  changeDimsBtnElement?.addEventListener("click", () =>
     changeDimensionsFlow(etchASketchContainer, grid)
+  );
+
+  resetBtnElement?.addEventListener("click", () =>
+    changeDimensions(etchASketchContainer, grid, dimensions)
   );
 }
 
