@@ -34,30 +34,52 @@ export function createCalculator() {
 
   function inputNumber(number) {
     if (operator) {
-      secondNumber += number;
+      secondNumber = addDigitToNumber(secondNumber, number);
     } else {
-      firstNumber += number;
+      firstNumber = addDigitToNumber(firstNumber, number);
     }
   }
 
+  function addDigitToNumber(number, digit) {
+    if (number.length > 8) {
+      return number;
+    }
+
+    return number + digit;
+  }
+
   function setOperator(op) {
-    if (!firstNumber) {
+    if (!firstNumber || !isValidNumber(firstNumber)) {
       return;
     }
 
     operator = op;
   }
 
+  function canCalculate() {
+    return (
+      operator && isValidNumber(firstNumber) && isValidNumber(secondNumber)
+    );
+  }
+
+  function isValidNumber(num) {
+    return !isNaN(Number(num));
+  }
+
   function calculate() {
-    if (!(firstNumber && secondNumber && operator)) {
+    if (!canCalculate()) {
       return;
     }
 
+    checkIfDividingByZero();
+
     var result = operate(Number(firstNumber), Number(secondNumber), operator);
 
-    firstNumber = result;
+    firstNumber = String(result);
     secondNumber = "";
     operator = "";
+
+    return result;
   }
 
   function clear() {
@@ -67,8 +89,58 @@ export function createCalculator() {
   }
 
   function getEquationState() {
-    return `${firstNumber} ${operator} ${secondNumber}`;
+    return `${firstNumber}${operator}${secondNumber}`;
   }
 
-  return { inputNumber, setOperator, calculate, clear, getEquationState };
+  function checkIfDividingByZero() {
+    if (secondNumber === "0" && operator === "/") {
+      alert("You are dumb idiot");
+    }
+  }
+
+  function hasDecimalPoint(val) {
+    return val.includes(".");
+  }
+
+  function addDecimalPoint() {
+    if (operator) {
+      if (hasDecimalPoint(secondNumber)) {
+        return;
+      }
+
+      secondNumber += ".";
+    } else {
+      if (hasDecimalPoint(firstNumber)) {
+        return;
+      }
+
+      firstNumber += ".";
+    }
+  }
+
+  function removeLastLetter(str) {
+    return str.substring(0, str.length - 1);
+  }
+
+  function backspace() {
+    if (operator) {
+      if (secondNumber.length === 0) {
+        operator = "";
+      }
+
+      secondNumber = removeLastLetter(secondNumber);
+    } else {
+      firstNumber = removeLastLetter(firstNumber);
+    }
+  }
+
+  return {
+    inputNumber,
+    setOperator,
+    calculate,
+    clear,
+    getEquationState,
+    addDecimalPoint,
+    backspace,
+  };
 }

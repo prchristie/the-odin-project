@@ -6,6 +6,8 @@ const operatorButtons = document.querySelectorAll(".operator");
 
 const clearButton = document.querySelector("#clear-btn");
 const equalsButton = document.querySelector("#equals-btn");
+const decimalButton = document.querySelector(".decimal-btn");
+const backspaceButton = document.querySelector(".backspace-btn");
 
 const resultDisplay = document.querySelector("#calculator-display");
 
@@ -21,6 +23,36 @@ function setupCalculator() {
   operatorButtons.forEach((btn) =>
     btn.addEventListener("click", handleOperatorClick)
   );
+  decimalButton?.addEventListener("click", handleDecimalPointClick);
+  backspaceButton?.addEventListener("click", handleBackspaceClick);
+
+  setupKeyboardInput();
+}
+
+function setupKeyboardInput() {
+  const allowedOperators = new Set(["+", "-", "/", "*"]);
+
+  document.addEventListener("keydown", (e) => {
+    if (e?.defaultPrevented) {
+      return;
+    }
+
+    if (!isNaN(Number(e.key))) {
+      updateStateAndDisplay("number", e.key);
+    } else if (allowedOperators.has(e.key)) {
+      updateStateAndDisplay("operator", e.key);
+    } else if (e.key === "Backspace") {
+      updateStateAndDisplay("backspace");
+    } else if (e.key === "=" || e.key === "Enter") {
+      updateStateAndDisplay("calculate");
+    } else if (e.key === "c" || e.key === "C") {
+      updateStateAndDisplay("clear");
+    } else if (e.key === ".") {
+      updateStateAndDisplay("decimal");
+    }
+
+    e.preventDefault();
+  });
 }
 
 function updateStateAndDisplay(action, value) {
@@ -33,9 +65,21 @@ function updateStateAndDisplay(action, value) {
     result = calculator.calculate();
   } else if (action === "clear") {
     result = calculator.clear();
+  } else if (action === "decimal") {
+    result = calculator.addDecimalPoint();
+  } else if (action === "backspace") {
+    result = calculator.backspace();
+  } else if (action === "tooManyNumbers") {
+    calculator.clear();
+    result = "Too many numbers";
   }
 
-  updateDisplay(result, resultDisplay);
+  const equationState = calculator.getEquationState();
+  if (equationState.length > 19) {
+    updateStateAndDisplay("tooManyNumbers");
+  } else {
+    updateDisplay(equationState, resultDisplay);
+  }
 }
 
 function updateDisplay(text, display) {
@@ -56,6 +100,14 @@ function handleEqualsClick() {
 
 function handleClearClick() {
   updateStateAndDisplay("clear");
+}
+
+function handleDecimalPointClick() {
+  updateStateAndDisplay("decimal");
+}
+
+function handleBackspaceClick() {
+  updateStateAndDisplay("backspace");
 }
 
 setupCalculator();
