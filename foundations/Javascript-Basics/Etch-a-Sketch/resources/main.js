@@ -1,3 +1,40 @@
+const etchASketchBoard = document.querySelector(".etch-a-sketch-board");
+const changeDimensionsButton = document.querySelector(
+  ".change-dimensions-button"
+);
+
+setupNewGridOnBoard(etchASketchBoard, 50);
+changeDimensionsButton?.addEventListener("click", changeDimensionsFlow);
+
+function changeDimensionsFlow() {
+  const userInput = prompt("What should the new dimensions be then?");
+
+  const dimensions = Number(userInput);
+
+  if (isNaN(dimensions)) {
+    alert("Provide a number please");
+    return;
+  } else if (dimensions < 1 || dimensions > 100) {
+    alert("Between 1 and 100 please");
+    return;
+  }
+
+  setupNewGridOnBoard(etchASketchBoard, dimensions);
+}
+
+function resetBoard() {
+  // @ts-ignore
+  etchASketchBoard.innerHTML = "";
+}
+
+const isMouseDown = useMouseDown();
+
+function setupNewGridOnBoard(board, dimensions) {
+  resetBoard();
+  const grid = createGridElement(dimensions);
+  board.appendChild(grid);
+}
+
 function createGridElement(dimensions) {
   const grid = document.createElement("div");
 
@@ -16,20 +53,23 @@ function createGridElement(dimensions) {
   return grid;
 }
 
-let mouseDown = false;
-function toggleMousePressed(state) {
-  mouseDown = state;
+function useMouseDown() {
+  let mouseDown = false;
+  function toggleMousePressed(state) {
+    mouseDown = state;
+  }
+
+  document.addEventListener("mousedown", () => toggleMousePressed(true));
+  document.addEventListener("mouseup", () => toggleMousePressed(false));
+
+  return function isMouseDown() {
+    return mouseDown;
+  };
 }
 
-document.addEventListener("mousedown", () => toggleMousePressed(true));
-document.addEventListener("mouseup", () => toggleMousePressed(false));
-
 function colourCell(cell) {
-  if (!mouseDown) {
+  if (!isMouseDown()) {
     return;
   }
   cell.style.backgroundColor = "black";
 }
-
-const etchASketchBoard = document.querySelector(".etch-a-sketch-board");
-etchASketchBoard?.appendChild(createGridElement(50));
