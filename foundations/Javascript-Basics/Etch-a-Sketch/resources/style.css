@@ -1,7 +1,37 @@
 /*
 Some default styles
 */
+:root {
+  --primary: hsla(254, 31%, 40%, 1);
+  --secondary: hsla(311, 18%, 83%, 1);
+  --azure-web: hsla(189, 100%, 97%, 1);
+  --tiffany-blue: hsla(182, 42%, 72%, 1);
+  --background: hsla(225, 54%, 14%, 1);
+}
 
-a:hover, button:hover {
+html {
+  background-color: var(--azure-web);
+  color: var(--background);
+}
+
+a:hover,
+button:hover {
   cursor: pointer;
+  filter: brightness(0.95);
+}
+
+button {
+  padding: 8px 10px;
+  background-color: var(--secondary);
+  border: 1px solid var(--primary);
+  border-radius: 5px;
+
+  color: inherit;
+}
+
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
