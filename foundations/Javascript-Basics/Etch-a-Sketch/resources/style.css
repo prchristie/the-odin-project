@@ -1,12 +1,12 @@
 :root {
-  --primary: hsla(254, 31%, 40%, 1);
-  --secondary: hsla(311, 18%, 83%, 1);
-  --azure-web: hsla(189, 100%, 97%, 1);
-  --tiffany-blue: hsla(182, 42%, 72%, 1);
-  --background: hsla(225, 54%, 14%, 1);
+  --secondary-2: hsla(353, 4%, 55%, 1);
+  --primary: hsla(186, 89%, 29%, 1);
+  --neutral-light: hsla(189, 100%, 97%, 1);
+  --secondary-1: hsla(27, 66%, 29%, 1);
+  --neutral-dark: hsla(225, 54%, 14%, 1);
 }
 
-p {
+p, html, body {
   margin: 0;
 }
 
@@ -15,10 +15,16 @@ p {
 }
 
 body {
-  background-color: var(--azure-web);
-  color: var(--background);
+  background-color: var(--neutral-light);
+  color: var(--neutral-dark);
   height: 100vh;
   padding: 1rem 0;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  height: 100%;
 }
 
 a:hover,
@@ -29,11 +35,10 @@ button:hover {
 
 button {
   padding: 8px 10px;
-  background-color: var(--secondary);
-  border: 1px solid var(--primary);
+  color: var(--neutral-light);
+  background-color: var(--primary);
+  border: 1px solid var(--secondary-2);
   border-radius: 5px;
-
-  color: inherit;
 }
 
 header {
@@ -47,35 +52,42 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 20px;
+  flex: 1;
 }
 
 .etch-a-sketch-controls {
   display: flex;
   flex-direction: column;
   flex: 0 0 content;
-  gap: 5px;
+  gap: 15px;
 }
 
-.rainbow-mode-button {
-  background: linear-gradient(
-    90deg,
-    rgba(255, 0, 0, 0.5) 0%,
-    rgba(255, 154, 0, 0.5) 10%,
-    rgba(208, 222, 33, 0.5) 20%,
-    rgba(79, 220, 74, 0.5) 30%,
-    rgba(63, 218, 216, 0.5) 40%,
-    rgba(47, 201, 226, 0.5) 50%,
-    rgba(28, 127, 238, 0.5) 60%,
-    rgba(95, 21, 242, 0.5) 70%,
-    rgba(186, 12, 248, 0.5) 80%,
-    rgba(251, 7, 217, 0.5) 90%,
-    rgba(255, 0, 0, 0.5) 100%
-  );
+.rainbow-mode-enabled {
+  border-image: linear-gradient(
+    to right,
+    rgba(255, 0, 0, 1) 0%,
+    rgba(255, 154, 0, 1) 10%,
+    rgba(208, 222, 33, 1) 20%,
+    rgba(79, 220, 74, 1) 30%,
+    rgba(63, 218, 216, 1) 40%,
+    rgba(47, 201, 226, 1) 50%,
+    rgba(28, 127, 238, 1) 60%,
+    rgba(95, 21, 242, 1) 70%,
+    rgba(186, 12, 248, 1) 80%,
+    rgba(251, 7, 217, 1) 90%,
+    rgba(255, 0, 0, 1) 100%
+  ) 1;
+
+  border-style: solid;
+  border-width: 2px;
 }
 
 .etch-a-sketch-board {
   flex: 1;
-  background-color: black;
+  max-width: 50vmin;
+  border: 3px solid var(--neutral-dark);
+  border-radius: 10px;
 }
 
 footer {
@@ -84,7 +96,7 @@ footer {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border-top: 1px solid var(--background);
+  border-top: 1px solid var(--neutral-light);
   gap: 10px;
 }
 
@@ -97,4 +109,13 @@ main {
 .icon {
   height: 2rem;
   width: 2rem;
+}
+
+.row {
+  display: flex;
+}
+
+.cell {
+  flex: 1;
+  aspect-ratio: 1;
 }
