@@ -1,0 +1,7 @@
+/*
+Some default styles
+*/
+
+a:hover, button:hover {
+  cursor: pointer;
+}
