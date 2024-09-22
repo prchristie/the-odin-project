@@ -1,3 +1,7 @@
+/*
+Houses all logic for the etch a sketch board
+*/
+
 const isMouseDown = useMouseDown();
 
 const MAXIMUM_DIMENSIONS = 100;
@@ -18,26 +22,29 @@ function useMouseDown() {
 
 export function useEtchASketch() {
   function resetBoard(board) {
-    // @ts-ignore
     board.innerHTML = "";
   }
 
-  function setupNewGridOnElement(element, dimensions) {
-    resetBoard(element);
-    const grid = createGridElement(dimensions);
-    element.appendChild(grid);
+  function isValidDimensions(dimension) {
+    if (isNaN(dimension)) {
+      alert("Provide a number please");
+      return false;
+    } else if (dimension < 1 || dimension > MAXIMUM_DIMENSIONS) {
+      alert("Between 1 and 100 please");
+      return false;
+    }
+
+    return true;
   }
 
-  function createGridOnElement(element, dimensions) {
-    if (isNaN(dimensions)) {
-      alert("Provide a number please");
-      return;
-    } else if (dimensions < 1 || dimensions > MAXIMUM_DIMENSIONS) {
-      alert("Between 1 and 100 please");
+  function setupNewGridOnElement(element, dimensions) {
+    if (!isValidDimensions(dimensions)) {
       return;
     }
 
-    setupNewGridOnElement(element, dimensions);
+    resetBoard(element);
+    const grid = createGridElement(dimensions);
+    element.appendChild(grid);
   }
 
   function createGridElement(dimensions) {
@@ -68,5 +75,5 @@ export function useEtchASketch() {
     cell.style.backgroundColor = "black";
   }
 
-  return { createGridOnElement, resetBoard };
+  return { setupNewGridOnElement };
 }
