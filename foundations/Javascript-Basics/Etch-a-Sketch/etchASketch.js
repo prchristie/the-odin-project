@@ -73,20 +73,25 @@ export function useEtchASketch() {
       row.classList.add("row");
       grid.appendChild(row);
       for (var x = 0; x < dimensions; x++) {
-        const cell = document.createElement("div");
-        cell.addEventListener("mouseenter", () => {
-          if (!isMouseDown()) {
-            return;
-          }
-          colourCell(cell);
-        });
-        cell.addEventListener("mousedown", () => colourCell(cell));
-        cell.classList.add("cell");
+        const cell = createCell();
         row.appendChild(cell);
       }
     }
 
     return grid;
+  }
+
+  function createCell() {
+    const cell = document.createElement("div");
+    cell.addEventListener("mouseenter", () => {
+      if (!isMouseDown()) {
+        return;
+      }
+      colourCell(cell);
+    });
+    cell.addEventListener("mousedown", () => colourCell(cell));
+    cell.classList.add("cell");
+    return cell;
   }
 
   function selectRainbowColour() {
@@ -98,7 +103,7 @@ export function useEtchASketch() {
   function colourCell(cell) {
     if (cell.style.backgroundColor === "") {
       if (!rainbowModeActivated) {
-        cell.style.backgroundColor = "black";
+        cell.style.backgroundColor = DEFAULT_COLOUR;
       } else {
         cell.style.backgroundColor = selectRainbowColour();
       }

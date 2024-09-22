@@ -18,9 +18,11 @@ const { setupNewGridOnElement, toggleRainbowMode } = useEtchASketch();
 setupNewGridOnElement(etchASketchBoard, INITIAL_BOARD_SIZE);
 
 changeDimensionsButton?.addEventListener("click", changeDimensionsFlow);
+
 resetButton?.addEventListener("click", () =>
   setupNewGridOnElement(etchASketchBoard, currentDimensions)
 );
+
 rainbowModeButton?.addEventListener("click", () => {
   const isOn = toggleRainbowMode();
   if (isOn) {
