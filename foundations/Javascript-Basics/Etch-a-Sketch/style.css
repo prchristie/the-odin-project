@@ -100,14 +100,12 @@ header {
     var(--primary);
   background-size: 200%;
 
-  transition: background-position 1s  cubic-bezier(0, 0, 0.56, 1.72);
+  transition: background-position 1s cubic-bezier(0.3, 0.24, 0.1, 1.02);
 }
 
 .rainbow-mode-enabled {
   background-position: 100%;
 }
-
-
 
 footer {
   padding: 10px;
