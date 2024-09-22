@@ -39,7 +39,7 @@ button {
   padding: 8px 10px;
   color: var(--neutral-light);
   background-color: var(--primary);
-  border: 1px solid var(--secondary-2);
+  border: 2px solid var(--secondary-1);
   border-radius: 5px;
 }
 
@@ -61,8 +61,10 @@ header {
 .etch-a-sketch-controls {
   display: flex;
   flex-direction: column;
-  flex: 0 0 content;
+  flex: 0 0 auto;
   gap: 15px;
+  width: 20%;
+  max-width: 30ch;
 }
 
 .rainbow-mode-button {
