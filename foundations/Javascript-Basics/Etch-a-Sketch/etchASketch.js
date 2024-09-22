@@ -57,12 +57,14 @@ export function useEtchASketch() {
 
   function setupNewGridOnElement(element, dimensions) {
     if (!isValidDimensions(dimensions)) {
-      return;
+      return false;
     }
 
     resetBoard(element);
     const grid = createGridElement(dimensions);
     element.appendChild(grid);
+
+    return true;
   }
 
   function createGridElement(dimensions) {

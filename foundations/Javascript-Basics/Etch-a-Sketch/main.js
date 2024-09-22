@@ -31,7 +31,7 @@ rainbowModeButton?.addEventListener("click", () => {
     rainbowModeButton.classList.remove("rainbow-mode-enabled");
   }
 
-  rainbowModeButton.textContent = `${isOn ? "Disable" : "Enable"} rainbow mode`
+  rainbowModeButton.textContent = `${isOn ? "Disable" : "Enable"} rainbow mode`;
 });
 
 function changeDimensionsFlow() {
@@ -39,6 +39,8 @@ function changeDimensionsFlow() {
 
   const dimensions = Number(userInput);
 
-  setupNewGridOnElement(etchASketchBoard, dimensions);
-  currentDimensions = dimensions;
+  const success = setupNewGridOnElement(etchASketchBoard, dimensions);
+  if (success) {
+    currentDimensions = dimensions;
+  }
 }
