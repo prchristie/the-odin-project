@@ -1,5 +1,7 @@
 const isMouseDown = useMouseDown();
 
+const MAXIMUM_DIMENSIONS = 100;
+
 function useMouseDown() {
   let mouseDown = false;
   function toggleMousePressed(state) {
@@ -14,7 +16,7 @@ function useMouseDown() {
   };
 }
 
-export function useEtchASketch(initialDimensions) {
+export function useEtchASketch() {
   function resetBoard(board) {
     // @ts-ignore
     board.innerHTML = "";
@@ -24,6 +26,18 @@ export function useEtchASketch(initialDimensions) {
     resetBoard(element);
     const grid = createGridElement(dimensions);
     element.appendChild(grid);
+  }
+
+  function createGridOnElement(element, dimensions) {
+    if (isNaN(dimensions)) {
+      alert("Provide a number please");
+      return;
+    } else if (dimensions < 1 || dimensions > MAXIMUM_DIMENSIONS) {
+      alert("Between 1 and 100 please");
+      return;
+    }
+
+    setupNewGridOnElement(element, dimensions);
   }
 
   function createGridElement(dimensions) {
@@ -54,5 +68,5 @@ export function useEtchASketch(initialDimensions) {
     cell.style.backgroundColor = "black";
   }
 
-  return { setupNewGridOnBoard: setupNewGridOnElement, resetBoard };
+  return { createGridOnElement, resetBoard };
 }

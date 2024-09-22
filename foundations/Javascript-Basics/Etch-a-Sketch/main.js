@@ -5,8 +5,10 @@ const changeDimensionsButton = document.querySelector(
   ".change-dimensions-button"
 );
 
-const { setupNewGridOnBoard } = useEtchASketch(10);
-setupNewGridOnBoard(etchASketchBoard, 50);
+const INITIAL_BOARD_SIZE = 16;
+
+const { createGridOnElement } = useEtchASketch();
+createGridOnElement(etchASketchBoard, INITIAL_BOARD_SIZE);
 changeDimensionsButton?.addEventListener("click", changeDimensionsFlow);
 
 function changeDimensionsFlow() {
@@ -14,13 +16,5 @@ function changeDimensionsFlow() {
 
   const dimensions = Number(userInput);
 
-  if (isNaN(dimensions)) {
-    alert("Provide a number please");
-    return;
-  } else if (dimensions < 1 || dimensions > 100) {
-    alert("Between 1 and 100 please");
-    return;
-  }
-
-  setupNewGridOnBoard(etchASketchBoard, dimensions);
+  createGridOnElement(etchASketchBoard, dimensions);
 }
