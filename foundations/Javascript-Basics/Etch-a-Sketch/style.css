@@ -6,7 +6,9 @@
   --neutral-dark: hsla(225, 54%, 14%, 1);
 }
 
-p, html, body {
+p,
+html,
+body {
   margin: 0;
 }
 
@@ -77,7 +79,7 @@ header {
     rgba(186, 12, 248, 0.4) 80%,
     rgba(251, 7, 217, 0.4) 90%,
     rgba(255, 0, 0, 0.4) 100%
-  ) ;
+  );
 }
 
 .etch-a-sketch-board {
@@ -106,6 +108,12 @@ main {
 .icon {
   height: 2rem;
   width: 2rem;
+}
+
+.icon:hover {
+  background-color: var(--primary);
+  transition: background-color 0.25s ease-in-out;
+  border-radius: 50%;
 }
 
 .row {
