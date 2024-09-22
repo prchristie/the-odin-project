@@ -20,9 +20,27 @@ function useMouseDown() {
   };
 }
 
+const VALID_RAINBOW_COLOUR_HEXES = [
+  "#9400D3",
+  "#4B0082",
+  "#0000FF",
+  "#00FF00",
+  "#FFFF00",
+  "#FF7F00",
+  "#FF0000",
+];
+const DEFAULT_COLOUR = "black";
+
 export function useEtchASketch() {
+  let rainbowModeActivated = false;
+
   function resetBoard(board) {
     board.innerHTML = "";
+  }
+
+  function toggleRainbowMode() {
+    rainbowModeActivated = !rainbowModeActivated;
+    return rainbowModeActivated;
   }
 
   function isValidDimensions(dimension) {
@@ -71,9 +89,17 @@ export function useEtchASketch() {
     return grid;
   }
 
-  function colourCell(cell) {
-    cell.style.backgroundColor = "black";
+  function selectRainbowColour() {
+    return VALID_RAINBOW_COLOUR_HEXES[Math.floor(Math.random() * VALID_RAINBOW_COLOUR_HEXES.length)]
   }
 
-  return { setupNewGridOnElement };
+  function colourCell(cell) {
+    if (!rainbowModeActivated) {
+      cell.style.backgroundColor = "black";
+    } else {
+      cell.style.backgroundColor = selectRainbowColour();
+    }
+  }
+
+  return { setupNewGridOnElement, toggleRainbowMode };
 }
