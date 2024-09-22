@@ -94,6 +94,10 @@ export function useEtchASketch() {
   }
 
   function colourCell(cell) {
+    if(cell.style.backgroundColor !== "") {
+      return;
+    }
+
     if (!rainbowModeActivated) {
       cell.style.backgroundColor = "black";
     } else {
