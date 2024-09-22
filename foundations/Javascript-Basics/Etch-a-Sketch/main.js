@@ -28,6 +28,8 @@ rainbowModeButton?.addEventListener("click", () => {
   } else {
     rainbowModeButton.classList.remove("rainbow-mode-enabled");
   }
+
+  rainbowModeButton.textContent = `${isOn ? "Disable" : "Enable"} rainbow mode`
 });
 
 function changeDimensionsFlow() {
