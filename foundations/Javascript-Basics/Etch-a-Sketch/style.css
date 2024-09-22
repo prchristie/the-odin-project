@@ -4,6 +4,14 @@
   --primary-dark: hsla(225, 54%, 14%, 1);
 }
 
+@import url("https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap");
+
+* {
+  font-family: "Major Mono Display", monospace;
+  font-weight: 400;
+  font-style: normal;
+}
+
 p,
 html,
 body {
@@ -80,20 +88,20 @@ header {
   How it works is we have have 1 half be one part of the background, the second half be the other background. When we transition, we just move the background across to show the other background. Gotta make sure to double the background size
   */
   background: linear-gradient(
-      to left,
-      rgba(255, 0, 0, 0.4) 0%,
-      rgba(255, 154, 0, 0.4) 5%,
-      rgba(208, 222, 33, 0.4) 10%,
-      rgba(79, 220, 74, 0.4) 15%,
-      rgba(63, 218, 216, 0.4) 20%,
-      rgba(47, 201, 226, 0.4) 25%,
-      rgba(28, 127, 238, 0.4) 30%,
-      rgba(95, 21, 242, 0.4) 35%,
-      rgba(186, 12, 248, 0.4) 40%,
-      rgba(251, 7, 217, 0.4) 45%,
-      rgba(255, 0, 0, 0.4) 50%,
-      var(--primary-light) 50%
-    );
+    to left,
+    rgba(255, 0, 0, 0.4) 0%,
+    rgba(255, 154, 0, 0.4) 5%,
+    rgba(208, 222, 33, 0.4) 10%,
+    rgba(79, 220, 74, 0.4) 15%,
+    rgba(63, 218, 216, 0.4) 20%,
+    rgba(47, 201, 226, 0.4) 25%,
+    rgba(28, 127, 238, 0.4) 30%,
+    rgba(95, 21, 242, 0.4) 35%,
+    rgba(186, 12, 248, 0.4) 40%,
+    rgba(251, 7, 217, 0.4) 45%,
+    rgba(255, 0, 0, 0.4) 50%,
+    var(--primary-light) 50%
+  );
   background-size: 200%;
 
   transition: background-position 1s cubic-bezier(0.3, 0.24, 0.1, 1.02);
