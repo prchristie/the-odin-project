@@ -90,19 +90,22 @@ export function useEtchASketch() {
   }
 
   function selectRainbowColour() {
-    return VALID_RAINBOW_COLOUR_HEXES[Math.floor(Math.random() * VALID_RAINBOW_COLOUR_HEXES.length)]
+    return VALID_RAINBOW_COLOUR_HEXES[
+      Math.floor(Math.random() * VALID_RAINBOW_COLOUR_HEXES.length)
+    ];
   }
 
   function colourCell(cell) {
-    if(cell.style.backgroundColor !== "") {
-      return;
+    if (cell.style.backgroundColor === "") {
+      if (!rainbowModeActivated) {
+        cell.style.backgroundColor = "black";
+      } else {
+        cell.style.backgroundColor = selectRainbowColour();
+      }
     }
 
-    if (!rainbowModeActivated) {
-      cell.style.backgroundColor = "black";
-    } else {
-      cell.style.backgroundColor = selectRainbowColour();
-    }
+    const currentOpacity = Number(cell.style.opacity);
+    cell.style.opacity = `${currentOpacity + 0.1}`;
   }
 
   return { setupNewGridOnElement, toggleRainbowMode };
