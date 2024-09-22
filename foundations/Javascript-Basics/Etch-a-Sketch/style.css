@@ -1,9 +1,7 @@
 :root {
-  --secondary-2: hsla(353, 4%, 55%, 1);
   --primary: hsla(186, 89%, 29%, 1);
-  --neutral-light: hsla(189, 100%, 97%, 1);
-  --secondary-1: hsla(27, 66%, 29%, 1);
-  --neutral-dark: hsla(225, 54%, 14%, 1);
+  --primary-light: hsla(189, 100%, 97%, 1);
+  --primary-dark: hsla(225, 54%, 14%, 1);
 }
 
 p,
@@ -17,8 +15,8 @@ body {
 }
 
 body {
-  background-color: var(--neutral-light);
-  color: var(--neutral-dark);
+  background-color: var(--primary-light);
+  color: var(--primary-dark);
   height: 100vh;
   padding: 1rem 0;
   display: flex;
@@ -37,10 +35,9 @@ button:hover {
 
 button {
   padding: 8px 10px;
-  color: var(--neutral-light);
-  background-color: var(--primary);
-  border: 2px solid var(--secondary-1);
+  border: 2px solid var(--primary);
   border-radius: 5px;
+  background-color: var(--primary-light);
 }
 
 header {
@@ -73,7 +70,7 @@ header {
   max-width: 100%;
   max-height: 100%;
   aspect-ratio: 1;
-  border: 3px solid var(--neutral-dark);
+  border: 3px solid var(--primary-dark);
   border-radius: 10px;
 }
 
@@ -95,9 +92,8 @@ header {
       rgba(186, 12, 248, 0.4) 40%,
       rgba(251, 7, 217, 0.4) 45%,
       rgba(255, 0, 0, 0.4) 50%,
-      var(--primary) 50%
-    ),
-    var(--primary);
+      var(--primary-light) 50%
+    );
   background-size: 200%;
 
   transition: background-position 1s cubic-bezier(0.3, 0.24, 0.1, 1.02);
@@ -113,7 +109,7 @@ footer {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border-top: 1px solid var(--neutral-light);
+  border-top: 1px solid var(--primary-light);
   gap: 10px;
 }
 
