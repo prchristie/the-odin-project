@@ -1,0 +1,161 @@
+@font-face {
+  font-family: "norsebold";
+  src: url("../assets/fonts/norse-bold-webfont.woff2") format("woff2"),
+    url("../assets/fonts/norse-bold-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+:root {
+  --darkened-background: rgba(0, 0, 0, 0.5);
+  --box-shadow: rgba(0, 0, 0, 0.25);
+  --background-colour: rgb(238, 238, 238);
+  --form-background: white;
+}
+
+/* Reset */
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+img {
+  max-height: 100%;
+}
+
+body,
+.container {
+  min-height: 100vh;
+}
+
+.logo {
+  color: white;
+  background: var(--darkened-background);
+  height: 150px;
+  padding: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 33.3vh;
+  width: 100%;
+  font-size: 6rem;
+}
+
+.image-sidebar-footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  color: white;
+  background: var(--darkened-background);
+  padding: 10px;
+}
+
+.image-sidebar-footer > a {
+  color: inherit;
+}
+
+.container {
+  display: flex;
+}
+
+.image-sidebar {
+  background-image: url("../assets/background.jpg");
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover; /* Resize the background image to cover the entire container */
+
+  font-family: "norsebold";
+
+  position: relative;
+  flex: 40%;
+}
+
+.sign-up-form {
+  flex: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 30px;
+
+  font-family: system-ui, sans-serif;
+  background-color: var(--background-colour);
+
+  padding-bottom: 30px;
+}
+
+.top-text {
+  font-size: 2rem;
+  max-width: 48ch;
+  padding: 40px;
+}
+
+p + p {
+  margin-top: 2rem;
+}
+
+.form-inputs {
+  background-color: var(--form-background);
+  box-shadow: var(--box-shadow) 0 4px 7px;
+  padding: 30px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.row {
+  display: flex;
+  gap: 50px;
+}
+
+.lets-do-this {
+  font-size: 2rem;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 0.75rem;
+  letter-spacing: 0.2rem;
+  font-weight: bold;
+}
+
+input {
+  border-radius: 5px;
+  padding: 5px;
+  font-size: 1.2rem;
+  border: 1px solid rgb(222, 222, 222);
+}
+
+
+input:focus, textarea:focus {
+  box-shadow: var(--box-shadow) 0 4px 7px;
+  outline: 1px solid blue;
+}
+
+.primary-btn  {
+  background-color: darkgreen;
+  border: 0;
+  padding: 15px 50px;
+  color: white;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  margin-left: 40px;
+  margin-top: 30px;
+}
+
+.login {
+  margin-left: 40px;
+}
+
+p > a {
+  font-weight: bold;
+  text-decoration: none;
+  color: darkgreen;
+}
+
+input:invalid {
+  outline: 1px solid red;
+}

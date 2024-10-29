@@ -1,0 +1,22 @@
+.group1 ~ * > .group2 {
+  background-color: red;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  width: clamp(50ch, 50vw, 75ch);
+}
+
+:root {
+  display: flex;
+  justify-content: center;
+  --section-padding: 50px;
+}
+
+section {
+  margin: var(--section-padding) 0
+}

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign up form</title>
+    <link rel="stylesheet" href="style.css" />
+    <script type="module" src="index.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="image-sidebar">
+        <h1 class="logo">
+          <img src="../assets/odin.png" alt="Odin Logo" class="odin-logo-pic" />
+          ODIN
+        </h1>
+        <div class="image-sidebar-footer">
+          Photo by <a href="google.com">Someone</a> on
+          <a href="google.com">somewhere</a>
+        </div>
+      </div>
+      <div class="sign-up-form">
+        <div class="top-text">
+          <p>
+            This is not a real online service! You know you need something like
+            this in your life to help you realize your deepest dreams. Sign up
+            now to get started.
+          </p>
+          <p>You <em>know</em> you want to.</p>
+        </div>
+        <form action="#">
+          <div class="form-inputs">
+            <p class="lets-do-this">Lets do this!</p>
+            <div class="row">
+              <label for="first-name">
+                FIRST NAME
+                <input id="first-name" type="text" />
+              </label>
+              <label for="last-name">
+                LAST NAME
+                <input id="last-name" type="text" />
+              </label>
+            </div>
+            <div class="row">
+              <label for="email">
+                EMAIL
+                <input id="email" type="email" />
+              </label>
+              <label for="phone-number">
+                PHONE NUMBER
+                <input id="phone-number" type="tel" />
+              </label>
+            </div>
+            <div class="row">
+              <label for="password">
+                PASSWORD
+                <input id="password" type="password" minlength="8" />
+              </label>
+              <label for="password-confirmation">
+                CONFIRM PASSWORD
+                <input id="password-confirmation" minlength="8" type="password" />
+              </label>
+            </div>
+          </div>
+          <button class="primary-btn create-account-cta">Create Account</button>
+        </form>
+        <p class="login">Already have an account? <a href="#">Log in</a></p>
+      </div>
+    </div>
+  </body>
+</html>
