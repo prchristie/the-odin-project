@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sign up form</title>
     <link rel="stylesheet" href="style.css" />
-    <script type="module" src="index.js"></script>
+    <script type="module" src="index.js" defer></script>
   </head>
   <body>
     <div class="container">
@@ -34,31 +34,31 @@
             <div class="row">
               <label for="first-name">
                 FIRST NAME
-                <input id="first-name" type="text" />
+                <input required id="first-name" type="text" />
               </label>
               <label for="last-name">
                 LAST NAME
-                <input id="last-name" type="text" />
+                <input required id="last-name" type="text" />
               </label>
             </div>
             <div class="row">
               <label for="email">
                 EMAIL
-                <input id="email" type="email" />
+                <input required id="email" type="email" />
               </label>
               <label for="phone-number">
                 PHONE NUMBER
-                <input id="phone-number" type="tel" />
+                <input required id="phone-number" type="tel" />
               </label>
             </div>
             <div class="row">
               <label for="password">
                 PASSWORD
-                <input id="password" type="password" minlength="8" />
+                <input required id="password" type="password" minlength="8" />
               </label>
               <label for="password-confirmation">
                 CONFIRM PASSWORD
-                <input id="password-confirmation" minlength="8" type="password" />
+                <input required id="password-confirmation" minlength="8" type="password" />
               </label>
             </div>
           </div>
