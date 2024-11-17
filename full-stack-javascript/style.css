@@ -1,0 +1,11 @@
+.grid-container {
+  display: grid;
+  grid-template: repeat(10, 50px) / repeat(10, 50px);
+}
+
+.grid-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  outline: 1px solid black;
+}
