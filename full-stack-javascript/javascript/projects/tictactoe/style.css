@@ -37,7 +37,6 @@ body {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.346);
 }
 
 .closed {
@@ -65,4 +64,24 @@ body {
 
 .modal-close-btn:active {
   filter: brightness(0.9);
+}
+
+.winner-modal-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: white;
+  font-size: 5rem;
+  background-color: rgba(0, 0, 0, 0.75);
+}
+
+.winner-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.winner-token-text {
+  font-size: 8rem;
 }

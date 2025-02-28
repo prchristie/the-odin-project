@@ -83,7 +83,7 @@ export function createTicTacToeGame(gameBoard, players) {
     }
   }
 
-  function hasPlayerWon() {
+  function getWinner() {
     // Check the rows
     for (var i = 0; i < gameBoard.dimensions; i++) {
       const row = gameBoard.getBoard()[i];
@@ -156,6 +156,6 @@ export function createTicTacToeGame(gameBoard, players) {
     getPlayerTurn,
     getGameBoard: () => gameBoard,
     takeTurn,
-    hasPlayerWon,
+    getWinner,
   };
 }

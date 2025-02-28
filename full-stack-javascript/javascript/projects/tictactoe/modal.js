@@ -4,13 +4,15 @@
  * @param {() => HTMLElement} createContentCb
  */
 export function createModal(startsOpen, doc, createContentCb, baseElement) {
-  let modal;
-  let isOpen = startsOpen;
+  const isOpen = startsOpen;
+  const modal = createInitialModal();
 
-  function initialize() {
-    modal = doc.createElement("div");
+  function createInitialModal() {
+    const modal = doc.createElement("div");
     modal.classList.add("modal", `${isOpen ? "open" : "closed"}`);
     modal.appendChild(createCloseButton());
+
+    return modal;
   }
 
   function createCloseButton() {
@@ -22,23 +24,25 @@ export function createModal(startsOpen, doc, createContentCb, baseElement) {
   }
 
   function rerender() {
-    baseElement.textContent = "";
+    modal.innerText = "";
+    modal.appendChild(createCloseButton())
     const children = createContentCb();
-    initialize();
     modal.appendChild(children);
     baseElement.appendChild(modal);
   }
 
-  rerender();
-
   function open() {
     modal.classList.remove("closed");
     modal.classList.add("open");
+
+    rerender();
   }
 
   function close() {
     modal.classList.remove("open");
     modal.classList.add("closed");
+
+    rerender();
   }
 
   return { open, close, rerender };

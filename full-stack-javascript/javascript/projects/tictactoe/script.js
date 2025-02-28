@@ -5,14 +5,35 @@ import {
 } from "./tictactoe.js";
 import { createModal } from "./modal.js";
 
-const modal = createModal(
-  false,
-  document,
-  () => document.createElement("div"),
-  document.querySelector("#winner-modal")
-);
+const ticTacToeGame = createTicTacToeGame(createGameBoard(3), [
+  createPlayer("X"),
+  createPlayer("O"),
+]);
 
-const ticTacToeRenderer = (function (baseElement, doc) {
+const ticTacToeRenderer = (function (baseElement, doc, ticTacToeGame) {
+  const winnerModal = createModal(
+    false,
+    document,
+    () => {
+      const winner = ticTacToeGame.getWinner();
+      const baseElement = doc.createElement("div");
+      baseElement.classList.add("winner-modal-content");
+      const winnerDisplay = doc.createElement("div");
+      winnerDisplay.classList.add("winner-display");
+      winnerDisplay.textContent = `Winner is`;
+      const winnerTokenDisplay = doc.createElement("em");
+      winnerTokenDisplay.classList.add("winner-token-text");
+      winnerTokenDisplay.innerText = winner.getToken();
+
+      winnerDisplay.appendChild(winnerTokenDisplay);
+
+      baseElement.appendChild(winnerDisplay);
+
+      return baseElement;
+    },
+    document.querySelector("#winner-modal")
+  );
+
   function createRow() {
     const row = doc.createElement("div");
     row.classList.add("row");
@@ -22,10 +43,10 @@ const ticTacToeRenderer = (function (baseElement, doc) {
 
   function onCellClick(ticTacToeGame, x, y) {
     ticTacToeGame.takeTurn(x, y);
-    const winner = ticTacToeGame.hasPlayerWon();
+    const winner = ticTacToeGame.getWinner();
     if (winner) {
       console.log(`Winner is ${winner.getToken()}`);
-      modal.open();
+      winnerModal.open();
     }
     renderTicTacToe(ticTacToeGame);
   }
@@ -63,11 +84,6 @@ const ticTacToeRenderer = (function (baseElement, doc) {
   }
 
   return { renderTicTacToe };
-})(document.querySelector("#tic-tac-toe"), document);
-
-const ticTacToeGame = createTicTacToeGame(createGameBoard(3), [
-  createPlayer("X"),
-  createPlayer("O"),
-]);
+})(document.querySelector("#tic-tac-toe"), document, ticTacToeGame);
 
 ticTacToeRenderer.renderTicTacToe(ticTacToeGame);
